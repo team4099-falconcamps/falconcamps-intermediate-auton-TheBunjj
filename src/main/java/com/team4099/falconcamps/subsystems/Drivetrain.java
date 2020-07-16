@@ -39,5 +39,9 @@ public class Drivetrain extends SubsystemBase {
     public double getRightDistance(){
         return encoderTicksToMeters(right.getSelectedSensorPosition());
     }
+
+    public double getAngle(){
+        return gyro.getAngle();
+    }
     
 }

@@ -19,7 +19,7 @@ public class DriveDistanceCommand extends CommandBase {
     }
 
     public boolean isFinished() {
-        if(currentLeft >= distanceMeters && currentRight >= distanceMeters){
+        if(currentLeft == distanceMeters && currentRight == distanceMeters){
             return true;
         }
         return false;
@@ -27,7 +27,8 @@ public class DriveDistanceCommand extends CommandBase {
 
     @Override
     public void execute(){
-        currentLeft = leftPID.calculate(drivetrain.getLeftDistance());
-        currentRight = rightPID.calculate(drivetrain.getRightDistance());
+        currentLeft = leftPID.calculate(drivetrain.getLeftDistance(), distanceMeters);
+        currentRight = rightPID.calculate(drivetrain.getRightDistance(), distanceMeters);
+        drivetrain.setLRPower(currentLeft, currentRight);
     }
 }
