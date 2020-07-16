@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
@@ -30,4 +31,13 @@ public class Drivetrain extends SubsystemBase {
     public double encoderTicksToMeters(int nativeUnits) {
         return (nativeUnits / (2048 / 0.08665966387)) * 6 * Math.PI;
     }
+
+    public double getLeftDistance(){
+        return encoderTicksToMeters(left.getSelectedSensorPosition());
+    }
+
+    public double getRightDistance(){
+        return encoderTicksToMeters(right.getSelectedSensorPosition());
+    }
+    
 }
